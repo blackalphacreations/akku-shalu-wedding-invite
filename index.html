@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akshay Jyothi & Shalu Shanavas</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:wght@400;500&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 *{
@@ -18,7 +18,7 @@
 :root{
   --accent:#bfa46f;
   --soft-gold:#d6c2a0;
-  --muted:#6f6f6f;
+  --muted:#444;
   --bg:#fdfbf7;
 }
 
@@ -27,6 +27,7 @@ body{
   background:var(--bg);
   color:#1c1c1c;
 }
+
 body::before{
   content:"";
   position:fixed;
@@ -36,10 +37,10 @@ body::before{
   height:100%;
   background:url("background.jpeg") no-repeat center center;
   background-size:cover;
-  background-attachment:fixed;   /* Parallax Effect */
-  opacity:0.5;                   /* 20% opacity */
-  filter:blur(6px);              /* Blur effect */
-  transform:scale(1.1);          /* Prevent blur edges cutting */
+  background-attachment:fixed;
+  opacity:0.5;
+  filter:blur(6px);
+  transform:scale(1.1);
   z-index:-1;
 }
 
@@ -70,14 +71,15 @@ body::before{
   color:var(--muted);
   margin-bottom:35px;
   text-transform:uppercase;
-  font-size:14px;
+  font-size:16px;
 }
 
 .groom-name,
 .bride-name{
-  font-family:'Playfair Display', serif;
-  font-size:80px;
-  font-weight:500;
+  font-family:'Cinzel', serif;
+  font-size:78px;
+  font-weight:600;
+  letter-spacing:2px;
 }
 
 .ampersand{
@@ -98,7 +100,7 @@ body::before{
   font-family:'Playfair Display', serif;
   font-size:40px;
   letter-spacing:2px;
-  color:var(--accent);
+  color:#8c6b2d;
 }
 
 /* Countdown */
@@ -177,14 +179,63 @@ section{
   margin-top:30px;
   font-family:'Playfair Display', serif;
   color:var(--accent);
-  font-size:24px;
+  font-size:28px;
 }
 
 .profile-card p{
   margin-top:12px;
-  font-size:16px;
+  font-size:20px;
   color:#555;
   line-height:1.6;
+}
+
+/* OUR STORY CARD */
+.story-card{
+  max-width:950px;
+  margin:auto;
+  padding:60px;
+  border-radius:40px;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(12px);
+  box-shadow:0 30px 80px rgba(0,0,0,0.08);
+  text-align:center;
+}
+
+.story-card img{
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  border-radius:30px;
+  margin-bottom:40px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.15);
+}
+
+.story-card p{
+  font-size:18px;
+  line-height:1.7;
+  color:#444;
+  margin-bottom:10px;
+}
+
+.story-highlight{
+  font-family:'Playfair Display', serif;
+  font-size:24px;
+  color:var(--accent);
+  margin-bottom:35px;
+}
+.story-intro{
+  font-family:'Dancing Script', cursive;
+  font-size:28px;
+  color:var(--accent);
+  margin-bottom:30px;
+}
+
+.story-ending{
+  font-family:'Dancing Script', cursive;
+  font-size:26px;
+  color:var(--accent);
+  margin-top:40px;
+  line-height:1.8;
 }
 
 /* EVENTS */
@@ -206,8 +257,14 @@ section{
 .event-card h3{
   font-family:'Playfair Display', serif;
   color:var(--accent);
-  font-size:26px;
+  font-size:28px;
   margin-bottom:15px;
+}
+.event-card p{
+  margin-top:12px;
+  font-size:20px;
+  color:#555;
+  line-height:1.6;
 }
 
 .map-btn{
@@ -239,8 +296,51 @@ section{
 .gallery img:hover{
   transform:scale(1.05);
 }
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:0.4s;
+  z-index:9999;
+}
 
-/* Footer */
+.lightbox img{
+  max-width:90%;
+  max-height:85%;
+  border-radius:20px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  transform:scale(0.8);
+  transition:0.4s;
+}
+
+.lightbox.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.lightbox.active img{
+  transform:scale(1);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:30px;
+  right:40px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
 footer{
   padding:100px 20px;
   text-align:center;
@@ -249,7 +349,6 @@ footer{
   color:#555;
 }
 
-/* Responsive */
 @media(max-width:768px){
   .groom-name,
   .bride-name{
@@ -260,6 +359,9 @@ footer{
   }
   .event-card{
     width:100%;
+  }
+  .story-card{
+    padding:30px;
   }
 }
 </style>
@@ -290,16 +392,17 @@ footer{
   <div class="section-divider"></div>
 
   <div class="couple-container">
-    <div class="profile-card">
-      <img src="groom.jpeg" alt="Groom">
-      <h3>Akshay Jyothi</h3>
-      <p>Son of Mr. Jyothi Sahadevan<br>& Mrs. Jayalekshmi P Pillai</p>
-    </div>
+    
 
     <div class="profile-card">
       <img src="bride.jpeg" alt="Bride">
       <h3>Shalu Shanavas</h3>
       <p>Daughter of Mr. Syam V<br>& Mrs. Sindhu S</p>
+    </div>
+    <div class="profile-card">
+      <img src="groom.jpeg" alt="Groom">
+      <h3>Akshay Jyothi</h3>
+      <p>Son of Mr. Jyothi Sahadevan<br>& Mrs. Jayalekshmi P Pillai</p>
     </div>
   </div>
 </section>
@@ -321,14 +424,73 @@ footer{
 
     <div class="event-card">
       <h3>Reception</h3>
-      <p>April 13, 2026 | 6:00 PM</p>
-      <p>Reception Venue (Location link will be updated)</p>
-      <a class="map-btn" href="#" target="_blank">
+      <p>April 13, 2026 | 4:00 PM</p>
+      <p>Vakkom Palazzo, Panayil Kadavu Rd, Varkala</p>
+      <a class="map-btn" href="https://maps.app.goo.gl/WxZFEAFJNhni6Q9A9" target="_blank">
         Open in Maps
       </a>
     </div>
   </div>
 </section>
+
+<!-- OUR STORY -->
+<section class="fade-in">
+  <h2 class="section-title">Our Story</h2>
+  <div class="section-divider"></div>
+
+  <div class="story-card">
+
+<img src="couple.jpeg" alt="Our Story">
+
+<p class="story-intro">
+Sometimes love begins in a single moment… and waits patiently for the right time.
+</p>
+<p>
+We met for the first time at a bride-to-be celebration that she and her friends had beautifully arranged for my best friend’s fiancée. I had gone there along with my friend, and in the middle of all the laughter and celebrations, I saw her — and that was it for me.
+</p>
+<p>
+It was love at first sight.
+</p>
+<p>
+I sent her a request on Instagram, hoping to know her more. Our conversations began, and before I knew it, I had fallen deeply for her. I confessed my feelings, but the timing wasn’t right. Life had different plans, and soon I moved abroad to focus on my future — carrying her in my heart.
+</p>
+<p>
+Time passed, and we stopped talking.
+</p>
+<p>
+But some people are never truly forgotten.
+</p>
+<p>
+After a long gap, I texted her again — not with big expectations, but simply on the occasion of my sister’s wedding. My only intention was to reconnect, to speak to her once more.
+</p>
+<p>
+That one message changed everything.
+</p>
+<p>
+The conversations came back, the comfort returned, and so did the feelings that had never really left. This time, when I told her how much she meant to me, it was not just love — it was certainty.
+</p>
+<p>
+She asked me to speak to our parents.
+</p>
+<p>
+In one of the most beautiful moments of my life, I asked my mother to call hers, and suddenly everything fell into place as if it had always been meant to happen.
+</p>
+<p>
+On May 4, 2025, we got engaged.
+</p>
+<p>
+And now, we are waiting for April 12, 2026 — the day I marry the girl I loved from the very first moment I saw her.
+</p>
+<p class="story-ending">
+From a chance meeting…<br>
+to a message sent just to reconnect…<br>
+to a lifetime together ❤️
+</p>
+
+</div>
+</section>
+
+
 
 <!-- GALLERY -->
 <section class="fade-in">
@@ -336,10 +498,19 @@ footer{
   <div class="section-divider"></div>
 
   <div class="gallery">
-    <img src="gallery1.jpeg" alt="">
-    <img src="gallery2.jpeg" alt="">
-    <img src="gallery3.jpeg" alt="">
-  </div>
+  <!-- Couple / Engagement -->
+  <img src="gallery1.jpeg" alt="Engagement">
+  <img src="gallery2.jpeg" alt="Couple">
+  <img src="gallery3.jpeg" alt="Memories">
+  <img src="couple1.jpeg" alt="Couple Photo">
+  <img src="couple2.jpeg" alt="Couple Photo">
+
+  <!-- Family Photos -->
+  <img src="family1.jpeg" alt="Family Photo 1">
+  <img src="family2.jpeg" alt="Family Photo 2">
+  <img src="family3.jpeg" alt="Family Photo 3">
+  <img src="family4.jpeg" alt="Family Photo 4">
+</div>
 </section>
 
 <footer>
@@ -358,7 +529,6 @@ setInterval(function(){
   document.getElementById("seconds").innerHTML = Math.floor((distance%(1000*60))/1000);
 },1000);
 
-/* Scroll reveal */
 const faders = document.querySelectorAll('.fade-in');
 const appearOnScroll = new IntersectionObserver((entries)=>{
   entries.forEach(entry=>{
@@ -370,7 +540,34 @@ const appearOnScroll = new IntersectionObserver((entries)=>{
 faders.forEach(fader=>{
   appearOnScroll.observe(fader);
 });
+/* LIGHTBOX FUNCTION */
+const galleryImages = document.querySelectorAll('.gallery img');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const closeBtn = document.getElementById('closeBtn');
+
+galleryImages.forEach(image=>{
+  image.addEventListener('click', ()=>{
+    lightbox.classList.add('active');
+    lightboxImg.src = image.src;
+  });
+});
+
+closeBtn.addEventListener('click', ()=>{
+  lightbox.classList.remove('active');
+});
+
+lightbox.addEventListener('click', (e)=>{
+  if(e.target !== lightboxImg){
+    lightbox.classList.remove('active');
+  }
+});
 </script>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close" id="closeBtn">&times;</span>
+  <img id="lightbox-img" src="">
+</div>
 
 </body>
 </html>
